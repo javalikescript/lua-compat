@@ -75,6 +75,10 @@ lua_pushfstring (l, "%s", strerror(errno));
 	} \
 	lua_pop(_LS, 1)
 
+#define SET_INT_FIELD(_LS, _NAME) \
+  lua_pushinteger(_LS, _NAME); \
+  lua_setfield(_LS, -2, #_NAME)
+
 #define b2s(b) ((b) ? "true" : "false")
 
 #endif /* JLS_LUA_MOD_H */
