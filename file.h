@@ -14,7 +14,7 @@
 
 #define FILE_UDATA_NAME "FILE*"
 #define REF_UDATA_FILE(_UDATA) (*(FILE **)_UDATA)
-#define FILE_UDATA_TYPE (FILE *)
+#define FILE_UDATA_TYPE FILE*
 
 #endif
 
