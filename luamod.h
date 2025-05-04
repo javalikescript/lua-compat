@@ -18,16 +18,6 @@
  * It implies that functions must return at least one value and this value cannot be false or nil.
  */
 
-/*
-lua_pushboolean(l, 1); // true
-lua_pushboolean(l, 0); // false
-// to be used with assert
-lua_pushnil(l);
-lua_pushstring(l, "some error");
-or
-lua_pushfstring (l, "%s", strerror(errno));
-*/
-
 #define RETURN_SUCCESS(_LS) lua_pushboolean(_LS, 1); \
 	return 1
 
@@ -48,6 +38,11 @@ lua_pushfstring (l, "%s", strerror(errno));
 #define SET_TABLE_KEY_NUMBER(_LS, _KEY, _VALUE) \
 	lua_pushstring(_LS, _KEY); \
 	lua_pushnumber(_LS, (lua_Number) (_VALUE)); \
+	lua_rawset(_LS, -3)
+
+#define SET_TABLE_KEY_BOOLEAN(_LS, _KEY, _VALUE) \
+	lua_pushstring(_LS, _KEY); \
+	lua_pushboolean(_LS, (int) _VALUE); \
 	lua_rawset(_LS, -3)
 
 #define SET_TABLE_INDEX_STRING(_LS, _INDEX, _VALUE) \
